@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cyuf0a0d0rja4"]
+
+[ext_resource type="Script" uid="uid://bm4mv1gipefei" path="res://src/scripts/entity/enemy.gd" id="1_e1bd7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e1bd7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sn0t7"]
+size = Vector3(1, 0.5, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1453232687 node_paths=PackedStringArray("_player_detection_area", "_player_attack_area", "__mesh")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_e1bd7")
+_speed = 3.0
+_player_detection_area = NodePath("PlayerDetectionArea")
+_player_attack_area = NodePath("PayerAttackArea")
+__mesh = NodePath("Model")
+metadata/_custom_type_script = "uid://bm4mv1gipefei"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=926809274]
+shape = SubResource("SphereShape3D_e1bd7")
+debug_color = Color(0.046666622, 0, 0.7, 0.41960785)
+
+[node name="PlayerDetectionArea" type="Area3D" parent="." unique_id=1629053140]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1409306211]
+debug_color = Color(0.68833333, 0.7, 0, 0.41960785)
+
+[node name="PayerAttackArea" type="Area3D" parent="." unique_id=620668395]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PayerAttackArea" unique_id=507740027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_sn0t7")
+debug_color = Color(0.6883335, 0, 0.7, 0.41960785)
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=2125503745]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c3vdr43vfqne"]
+
+[ext_resource type="Script" uid="uid://bqc7vmfa71wu" path="res://src/scripts/weapon/ranged_weapon.gd" id="1_ddj2y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqys"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+material = SubResource("StandardMaterial3D_riqys")
+size = Vector3(0.3, 0.3, 0.8)
+
+[node name="Rifle" type="Node3D" unique_id=952936400]
+script = ExtResource("1_ddj2y")
+metadata/_custom_type_script = "uid://bqc7vmfa71wu"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1689709160]
+mesh = SubResource("BoxMesh_bhunq")

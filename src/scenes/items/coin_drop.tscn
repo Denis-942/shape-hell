@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bff0wv6tn0u5r"]
+
+[ext_resource type="Script" uid="uid://b8l17m1j4ns6u" path="res://src/scripts/other/drops/coin_drop.gd" id="1_mukbn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30nut"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypdqb"]
+albedo_color = Color(0.9764706, 0.6901961, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5rhox"]
+material = SubResource("StandardMaterial3D_ypdqb")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.1
+
+[node name="CoinDrop" type="RigidBody3D" unique_id=688877798 node_paths=PackedStringArray("_mesh")]
+collision_layer = 16
+script = ExtResource("1_mukbn")
+_mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://b8l17m1j4ns6u"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=308462517]
+shape = SubResource("BoxShape3D_30nut")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=697912857]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0)
+mesh = SubResource("CylinderMesh_5rhox")

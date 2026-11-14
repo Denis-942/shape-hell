@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cjx40r3c6ut4j"]
+
+[ext_resource type="Texture2D" uid="uid://dfswifwcayn5r" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_cyan_512x512.png" id="1_5orbf"]
+[ext_resource type="Script" uid="uid://dcmhvmc603jsl" path="res://src/scripts/singletons/game.gd" id="1_cu3ee"]
+[ext_resource type="PackedScene" uid="uid://dlafe0w2emrtu" path="res://src/scenes/player.tscn" id="2_uqkm6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uqkm6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_cu3ee"]
+sky_material = SubResource("ProceduralSkyMaterial_uqkm6")
+
+[sub_resource type="Environment" id="Environment_rcsry"]
+background_mode = 2
+sky = SubResource("Sky_cu3ee")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqys"]
+albedo_texture = ExtResource("1_5orbf")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+material = SubResource("StandardMaterial3D_riqys")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
+size = Vector3(100, 1, 100)
+
+[node name="Root" type="Node" unique_id=230319032]
+
+[node name="Singletons" type="Node" parent="." unique_id=205338684]
+
+[node name="Game" type="Node" parent="Singletons" unique_id=1454201069]
+script = ExtResource("1_cu3ee")
+metadata/_custom_type_script = "uid://dcmhvmc603jsl"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1769528184]
+environment = SubResource("Environment_rcsry")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=616313563]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="." unique_id=1765535284]
+
+[node name="Map" type="Node3D" parent="World" unique_id=861899354]
+
+[node name="Floor" type="StaticBody3D" parent="World/Map" unique_id=1968530819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 3
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Map/Floor" unique_id=2044243247]
+mesh = SubResource("BoxMesh_bhunq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Map/Floor" unique_id=2038166167]
+shape = SubResource("BoxShape3D_bhunq")
+
+[node name="Player" parent="World/Map" unique_id=1900480450 instance=ExtResource("2_uqkm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

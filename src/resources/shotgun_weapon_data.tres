@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cfdjb0rjsljrk"]
+
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="1_4vpes"]
+[ext_resource type="PackedScene" uid="uid://cvd23y3umpox2" path="res://src/scenes/items/weapon_drop.tscn" id="1_htru7"]
+[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts/weapon/weapon_data.gd" id="1_rusmt"]
+[ext_resource type="PackedScene" uid="uid://yxlv7dhlnhn4" path="res://src/scenes/weapons/ranged_weapon.tscn" id="3_4vpes"]
+
+[sub_resource type="Resource" id="Resource_knmor"]
+script = ExtResource("1_4vpes")
+base = 9.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[resource]
+script = ExtResource("1_rusmt")
+weapon_name = "Shotgun"
+weapon_id = &"shotgun"
+_fire_type = 2
+rarity = 1
+_shotgun_fire_delay = 0.4
+_shotgun_shot_count = 7
+_shotgun_rpm = 150
+_shotgun_rps = 2.5
+damage = SubResource("Resource_knmor")
+ammo_weight = 2
+max_ammo = 7
+pierce = 3
+projectile_range = 9.0
+projectile_velocity = 50.0
+spread_angle = 20.0
+weapon_scene = ExtResource("3_4vpes")
+item_scene = ExtResource("1_htru7")
+metadata/_custom_type_script = "uid://fa70vcd32qay"

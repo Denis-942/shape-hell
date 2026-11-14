@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dlafe0w2emrtu"]
+
+[ext_resource type="Script" uid="uid://8jdo38c7nn0a" path="res://src/scripts/entity/player/player.gd" id="1_v4rts"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_v4rts"]
+
+[sub_resource type="Resource" id="Resource_v4rts"]
+script = ExtResource("2_v4rts")
+base = 100.0
+scalar = null
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cu3ee"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uqkm6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cusn3"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody3D" unique_id=1900480450 node_paths=PackedStringArray("collect_area", "camera", "orientation", "hand")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_v4rts")
+collect_area = NodePath("CollectArea")
+camera = NodePath("CameraHolder/Camera3D")
+orientation = NodePath("Orientation")
+hand = NodePath("Orientation/Hand")
+_max_health = SubResource("Resource_v4rts")
+metadata/_custom_type_script = "uid://8jdo38c7nn0a"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1936292486]
+shape = SubResource("SphereShape3D_cu3ee")
+
+[node name="Orientation" type="Node3D" parent="." unique_id=549001676]
+
+[node name="PlayerModel" type="MeshInstance3D" parent="Orientation" unique_id=1446059767]
+mesh = SubResource("BoxMesh_uqkm6")
+
+[node name="Hand" type="Node3D" parent="Orientation" unique_id=1822511787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+
+[node name="CameraHolder" type="Node3D" parent="." unique_id=270480315]
+transform = Transform3D(0.7071067, -0.54167515, 0.45451945, 0, 0.6427876, 0.7660444, -0.7071067, -0.54167515, 0.45451945, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=2064603244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="CollectArea" type="Area3D" parent="." unique_id=60669869]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectArea" unique_id=1039334262]
+shape = SubResource("CylinderShape3D_cusn3")

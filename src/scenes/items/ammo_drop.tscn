@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://djlb2puhti213"]
+
+[ext_resource type="Script" uid="uid://dxilxqhtffmng" path="res://src/scripts/other/drops/ammo_drop.gd" id="1_5rhox"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wds8j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mukbn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ypdqb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_mukbn")
+size = Vector3(0.25, 0.4, 0.15)
+
+[node name="AmmoDrop" type="RigidBody3D" unique_id=1109652650 node_paths=PackedStringArray("_mesh")]
+collision_layer = 16
+script = ExtResource("1_5rhox")
+_mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://dxilxqhtffmng"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=387971289]
+shape = SubResource("BoxShape3D_wds8j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1193453237]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
+mesh = SubResource("BoxMesh_ypdqb")

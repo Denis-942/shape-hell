@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bap8u1vhwec0k"]
+
+[ext_resource type="Script" uid="uid://dhp0t2m3b2ike" path="res://src/scripts/entity/entity.gd" id="1_1bl7e"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_crmuw"]
+[ext_resource type="Texture2D" uid="uid://bvbothtpiav3p" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_white_512x512.png" id="2_x7xfu"]
+
+[sub_resource type="Resource" id="Resource_uk8gr"]
+script = ExtResource("2_crmuw")
+base = 1000000000.0
+scalar = null
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7xfu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7xfu"]
+albedo_texture = ExtResource("2_x7xfu")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+material = SubResource("StandardMaterial3D_x7xfu")
+size = Vector3(1, 2, 1)
+
+[node name="TestDummy" type="CharacterBody3D" unique_id=1458412168]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_1bl7e")
+_max_health = SubResource("Resource_uk8gr")
+metadata/_custom_type_script = "uid://dhp0t2m3b2ike"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366142164]
+shape = SubResource("CapsuleShape3D_x7xfu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=123881740]
+mesh = SubResource("BoxMesh_bhunq")

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bycqt6lre86u4"]
+
+[sub_resource type="FontVariation" id="FontVariation_xpyrk"]
+
+[resource]
+base_font = SubResource("FontVariation_xpyrk")

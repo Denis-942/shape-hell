@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8wko4u6gr2hq"]
+
+[ext_resource type="Script" uid="uid://bqc7vmfa71wu" path="res://src/scripts/weapon/ranged_weapon.gd" id="1_xngtn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqys"]
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+material = SubResource("StandardMaterial3D_riqys")
+size = Vector3(0.25, 0.25, 0.5)
+
+[node name="Pistol" type="Node3D" unique_id=1921613962]
+script = ExtResource("1_xngtn")
+metadata/_custom_type_script = "uid://bqc7vmfa71wu"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1638570947]
+mesh = SubResource("BoxMesh_bhunq")

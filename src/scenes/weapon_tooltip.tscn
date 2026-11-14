@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://trm1f2qkxme5"]
+
+[ext_resource type="Script" uid="uid://bru6m7r3jau3i" path="res://src/scripts/ui/weapon_tooltip.gd" id="1_nwery"]
+[ext_resource type="FontFile" uid="uid://c6aj2iphg5erv" path="res://assets/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf" id="2_pg1kh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhunq"]
+content_margin_left = 8.0
+content_margin_top = 12.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1344, 0.15146667, 0.16, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+line_spacing = -2.0
+
+[node name="WeaponTooltip" type="Control" unique_id=1328970718 node_paths=PackedStringArray("weapon_name_label", "weapon_level_label", "rarity_label", "damage_label", "burst_label", "rpm_label", "pierce_label", "range_label", "velocity_label", "spread_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nwery")
+weapon_name_label = NodePath("PanelContainer/VBoxContainer/NameLabel")
+weapon_level_label = NodePath("PanelContainer/VBoxContainer/Level")
+rarity_label = NodePath("PanelContainer/VBoxContainer/Rarity")
+damage_label = NodePath("PanelContainer/VBoxContainer/Stats/Damage")
+burst_label = NodePath("PanelContainer/VBoxContainer/Stats/Burst")
+rpm_label = NodePath("PanelContainer/VBoxContainer/Stats/Rpm")
+pierce_label = NodePath("PanelContainer/VBoxContainer/Stats/Pierce")
+range_label = NodePath("PanelContainer/VBoxContainer/Stats/Range")
+velocity_label = NodePath("PanelContainer/VBoxContainer/Stats/Velocity")
+spread_label = NodePath("PanelContainer/VBoxContainer/Stats/Spread")
+metadata/_custom_type_script = "uid://bru6m7r3jau3i"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=618850428]
+layout_mode = 1
+offset_right = 112.0
+offset_bottom = 169.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bhunq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=59220309]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 6
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1583184145]
+custom_minimum_size = Vector2(128, 0)
+clip_contents = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pg1kh")
+text = "Test Weapon"
+label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=2038211460]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Level" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=733467920]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[color=cyan]Level X[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Rarity" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1855552255]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Legendary"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=990561412]
+layout_mode = 2
+
+[node name="Damage" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=1712207003]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Damage: x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Burst" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=1710441432]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Burst: x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Rpm" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=2000864042]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Rpm: x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Pierce" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=181388214]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Pierce: x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Range" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=178320]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Range: x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Velocity" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=1674516122]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Velocity: x
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Spread" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=1132228910]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Spread: x "
+fit_content = true
+autowrap_mode = 0

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dammhe1bh7g0g"]
+
+[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts/weapon/weapon_data.gd" id="1_efpss"]
+[ext_resource type="PackedScene" uid="uid://cvd23y3umpox2" path="res://src/scenes/items/weapon_drop.tscn" id="1_khlyy"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="1_xt6xi"]
+[ext_resource type="PackedScene" uid="uid://yxlv7dhlnhn4" path="res://src/scenes/weapons/ranged_weapon.tscn" id="3_xt6xi"]
+
+[sub_resource type="Resource" id="Resource_fb1g7"]
+script = ExtResource("1_xt6xi")
+base = 8.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[resource]
+script = ExtResource("1_efpss")
+weapon_name = "Burster"
+weapon_id = &"burster"
+_fire_type = 1
+rarity = 3
+_burst_fire_delay = 0.9
+_burst_count = 10
+_burst_interval = 0.05
+_burst_rpm = 444
+_burst_rps = 7.4074074074074066
+damage = SubResource("Resource_fb1g7")
+ammo_weight = 1
+max_ammo = 45
+pierce = 4
+projectile_range = 60.0
+projectile_velocity = 90.0
+spread_angle = 4.0
+weapon_scene = ExtResource("3_xt6xi")
+item_scene = ExtResource("1_khlyy")
+metadata/_custom_type_script = "uid://fa70vcd32qay"

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ckqf8asfesob8"]
+
+[ext_resource type="PackedScene" uid="uid://cyuf0a0d0rja4" path="res://src/scenes/enemies/enemy.tscn" id="1_0dabg"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_sqirp"]
+[ext_resource type="Script" uid="uid://c7wo7a5617xkt" path="res://src/scripts/other/rarity_set.gd" id="2_uk8gr"]
+
+[sub_resource type="Resource" id="Resource_ofppv"]
+script = ExtResource("2_uk8gr")
+__rarity_dict = Dictionary[int, float]({
+0: 0.35,
+1: 0.28,
+2: 0.2,
+3: 0.12,
+4: 0.05
+})
+metadata/_custom_type_script = "uid://c7wo7a5617xkt"
+
+[sub_resource type="Resource" id="Resource_808mi"]
+script = ExtResource("2_sqirp")
+base = 70.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ojhqs"]
+radius = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofppv"]
+albedo_color = Color(1, 0.6666667, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_808mi"]
+material = SubResource("StandardMaterial3D_ofppv")
+height = 1.0
+
+[node name="CylinderEnemy" unique_id=1453232687 node_paths=PackedStringArray("_mesh") instance=ExtResource("1_0dabg")]
+rarity_set = SubResource("Resource_ofppv")
+_damage = 3.0
+_speed = 7.0
+_attack_rate = 0.5
+_mesh = NodePath("Model")
+_color = Color(1, 0.6666667, 0, 1)
+_max_health = SubResource("Resource_808mi")
+
+[node name="CollisionShape3D" parent="PlayerDetectionArea" parent_id_path=PackedInt32Array(1629053140) index="0" unique_id=1409306211]
+shape = SubResource("CylinderShape3D_ojhqs")
+
+[node name="Model" parent="." index="3" unique_id=2125503745]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_808mi")

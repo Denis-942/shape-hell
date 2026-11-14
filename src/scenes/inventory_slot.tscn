@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dam4lbsyrdl0h"]
+
+[ext_resource type="Script" uid="uid://5ol06147qipf" path="res://src/scripts/ui/inventory_slot.gd" id="1_h4ijv"]
+
+[node name="InventorySlot" type="MenuButton" unique_id=1773918334 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+disabled = true
+script = ExtResource("1_h4ijv")
+label = NodePath("Label")
+metadata/_custom_type_script = "uid://5ol06147qipf"
+
+[node name="Panel" type="Panel" parent="." unique_id=1334080847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="." unique_id=1323011003]
+custom_minimum_size = Vector2(88, 0)
+custom_maximum_size = Vector2(88, -1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -1
+theme_override_font_sizes/font_size = 14
+text = "placeholder weapon "
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3

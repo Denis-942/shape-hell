@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ch7i3ft5abaoy"]
+
+[ext_resource type="PackedScene" uid="uid://cyuf0a0d0rja4" path="res://src/scenes/enemies/enemy.tscn" id="1_08uga"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_q8ubj"]
+[ext_resource type="Script" uid="uid://c7wo7a5617xkt" path="res://src/scripts/other/rarity_set.gd" id="2_vp6kd"]
+
+[sub_resource type="Resource" id="Resource_mukbn"]
+script = ExtResource("2_vp6kd")
+__rarity_dict = Dictionary[int, float]({
+0: 0.35,
+1: 0.28,
+2: 0.2,
+3: 0.12,
+4: 0.05
+})
+metadata/_custom_type_script = "uid://c7wo7a5617xkt"
+
+[sub_resource type="Resource" id="Resource_v4rts"]
+script = ExtResource("2_q8ubj")
+base = 90.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ffr4i"]
+radius = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43hrp"]
+albedo_color = Color(0.8, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e1bd7"]
+material = SubResource("StandardMaterial3D_43hrp")
+
+[node name="CubeEnemy" unique_id=1453232687 node_paths=PackedStringArray("_mesh") instance=ExtResource("1_08uga")]
+rarity_set = SubResource("Resource_mukbn")
+_damage = 5.0
+_speed = 5.0
+_mesh = NodePath("Model")
+_color = Color(0.8, 0, 0, 1)
+_max_health = SubResource("Resource_v4rts")
+
+[node name="CollisionShape3D" parent="PlayerDetectionArea" parent_id_path=PackedInt32Array(1629053140) index="0" unique_id=1409306211]
+shape = SubResource("CylinderShape3D_ffr4i")
+
+[node name="Model" parent="." index="3" unique_id=2125503745]
+mesh = SubResource("BoxMesh_e1bd7")

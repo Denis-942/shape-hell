@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bf3ruunlm1lp6"]
+
+[ext_resource type="Script" uid="uid://cjil5dh7p343d" path="res://src/scripts/weapon/projectile.gd" id="1_d3vx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1gkf"]
+albedo_color = Color(1, 0.5, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_riqys"]
+material = SubResource("StandardMaterial3D_g1gkf")
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="BasicBullet" type="MeshInstance3D" unique_id=1714235335]
+mesh = SubResource("BoxMesh_riqys")
+script = ExtResource("1_d3vx4")
+metadata/_custom_type_script = "uid://cjil5dh7p343d"

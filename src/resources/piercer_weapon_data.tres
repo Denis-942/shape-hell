@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://60f02mgy34o2"]
+
+[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts/weapon/weapon_data.gd" id="1_4xt0k"]
+[ext_resource type="PackedScene" uid="uid://cvd23y3umpox2" path="res://src/scenes/items/weapon_drop.tscn" id="1_5pk0t"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="1_lrg40"]
+[ext_resource type="PackedScene" uid="uid://ca1q8mcxmt2r8" path="res://src/scenes/weapons/piercer.tscn" id="3_5pk0t"]
+
+[sub_resource type="Resource" id="Resource_hds2c"]
+script = ExtResource("1_lrg40")
+base = 40.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[resource]
+script = ExtResource("1_4xt0k")
+weapon_name = "Piercer"
+weapon_id = &"piercer"
+rarity = 3
+_single_rpm = 360
+_single_rps = 6.0
+_single_fire_delay = 0.16666666666666666
+damage = SubResource("Resource_hds2c")
+ammo_weight = 2
+max_ammo = 6
+pierce = 9
+projectile_range = 200.0
+projectile_velocity = 120.0
+weapon_scene = ExtResource("3_5pk0t")
+item_scene = ExtResource("1_5pk0t")
+metadata/_custom_type_script = "uid://fa70vcd32qay"

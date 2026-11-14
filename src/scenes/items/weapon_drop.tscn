@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cvd23y3umpox2"]
+
+[ext_resource type="Script" uid="uid://dgi7qh6o6eym0" path="res://src/scripts/other/drops/weapon_drop.gd" id="1_u4uj0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqys"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0qmtm"]
+material = SubResource("StandardMaterial3D_riqys")
+radius = 0.15
+height = 0.7
+radial_segments = 16
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
+
+[node name="WeaponDrop" type="RigidBody3D" unique_id=1429722472 node_paths=PackedStringArray("_mesh")]
+collision_layer = 16
+script = ExtResource("1_u4uj0")
+_mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://dgi7qh6o6eym0"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=653388311]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0qmtm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=739636321]
+shape = SubResource("BoxShape3D_bhunq")

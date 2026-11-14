@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://vknjttyq72ak"]
+
+[ext_resource type="PackedScene" uid="uid://cyuf0a0d0rja4" path="res://src/scenes/enemies/enemy.tscn" id="1_ojhqs"]
+[ext_resource type="Script" uid="uid://c7wo7a5617xkt" path="res://src/scripts/other/rarity_set.gd" id="2_808mi"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_i4og5"]
+
+[sub_resource type="Resource" id="Resource_p31mp"]
+script = ExtResource("2_808mi")
+__rarity_dict = Dictionary[int, float]({
+0: 0.35,
+1: 0.28,
+2: 0.2,
+3: 0.12,
+4: 0.05
+})
+metadata/_custom_type_script = "uid://c7wo7a5617xkt"
+
+[sub_resource type="Resource" id="Resource_q8ubj"]
+script = ExtResource("2_i4og5")
+base = 140.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_08uga"]
+radius = 40.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21n6c"]
+albedo_color = Color(0, 0.63333344, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_16t0b"]
+material = SubResource("StandardMaterial3D_21n6c")
+size = Vector3(1, 2, 1)
+
+[node name="CuboidEnemy" unique_id=1453232687 node_paths=PackedStringArray("_mesh") instance=ExtResource("1_ojhqs")]
+rarity_set = SubResource("Resource_p31mp")
+_damage = 15.0
+_attack_rate = 2.0
+_mesh = NodePath("Model")
+_color = Color(0, 0.63529414, 1, 1)
+_max_health = SubResource("Resource_q8ubj")
+
+[node name="CollisionShape3D" parent="PlayerDetectionArea" parent_id_path=PackedInt32Array(1629053140) index="0" unique_id=1409306211]
+shape = SubResource("CylinderShape3D_08uga")
+
+[node name="Model" parent="." index="3" unique_id=2125503745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_16t0b")
