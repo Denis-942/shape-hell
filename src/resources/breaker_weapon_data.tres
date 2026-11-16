@@ -26,6 +26,7 @@ damage = SubResource("Resource_fb1g7")
 ammo_type = 1
 ammo_weight = 1
 max_ammo = 9
+reload_time = 1.8
 pierce = 7
 projectile_range = 24.0
 projectile_velocity = 70.0

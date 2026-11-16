@@ -15,9 +15,14 @@ __rarity_dict = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://c7wo7a5617xkt"
 
+[sub_resource type="Resource" id="Resource_dfgjt"]
+script = ExtResource("2_sqirp")
+base = 5.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
 [sub_resource type="Resource" id="Resource_808mi"]
 script = ExtResource("2_sqirp")
-base = 70.0
+base = 30.0
 metadata/_custom_type_script = "uid://dcbjus20o1o1n"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ojhqs"]
@@ -32,7 +37,7 @@ height = 1.0
 
 [node name="CylinderEnemy" unique_id=1453232687 node_paths=PackedStringArray("_mesh") instance=ExtResource("1_0dabg")]
 rarity_set = SubResource("Resource_ofppv")
-_damage = 3.0
+_damage = SubResource("Resource_dfgjt")
 _speed = 7.0
 _attack_rate = 0.5
 _mesh = NodePath("Model")
@@ -41,6 +46,9 @@ _max_health = SubResource("Resource_808mi")
 
 [node name="CollisionShape3D" parent="PlayerDetectionArea" parent_id_path=PackedInt32Array(1629053140) index="0" unique_id=1409306211]
 shape = SubResource("CylinderShape3D_ojhqs")
+
+[node name="CollisionShape3D" parent="PayerAttackArea" parent_id_path=PackedInt32Array(620668395) index="0" unique_id=507740027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
 
 [node name="Model" parent="." index="3" unique_id=2125503745]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)

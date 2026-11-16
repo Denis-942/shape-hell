@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_hds2c"]
 script = ExtResource("1_lrg40")
-base = 40.0
+base = 30.0
 metadata/_custom_type_script = "uid://dcbjus20o1o1n"
 
 [resource]
@@ -15,12 +15,12 @@ script = ExtResource("1_4xt0k")
 weapon_name = "Piercer"
 weapon_id = &"piercer"
 rarity = 3
-_single_rpm = 360
-_single_rps = 6.0
-_single_fire_delay = 0.16666666666666666
+_single_rpm = 240
+_single_rps = 4.0
+_single_fire_delay = 0.25
 damage = SubResource("Resource_hds2c")
 ammo_weight = 2
-max_ammo = 6
+max_ammo = 5
 pierce = 9
 projectile_range = 200.0
 projectile_velocity = 120.0

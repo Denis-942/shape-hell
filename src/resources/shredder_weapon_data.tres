@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_cysq1"]
 script = ExtResource("1_o3e1u")
-base = 8.0
+base = 7.0
 metadata/_custom_type_script = "uid://dcbjus20o1o1n"
 
 [resource]
@@ -15,15 +15,16 @@ script = ExtResource("1_q44cp")
 weapon_name = "Shredder"
 weapon_id = &"shredder"
 rarity = 4
-_single_rpm = 12000
-_single_rps = 200.0
-_single_fire_delay = 0.005
+_single_rpm = 9000
+_single_rps = 150.0
+_single_fire_delay = 0.006666666666666667
 damage = SubResource("Resource_cysq1")
-max_ammo = 400
+max_ammo = 600
+reload_time = 5.0
 pierce = 5
 projectile_range = 25.0
 projectile_velocity = 70.0
-spread_angle = 30.0
+spread_angle = 35.0
 weapon_scene = ExtResource("3_o3e1u")
 item_scene = ExtResource("1_ckcsa")
 metadata/_custom_type_script = "uid://fa70vcd32qay"

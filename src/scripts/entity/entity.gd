@@ -48,7 +48,7 @@ var _health_state: HealthState = HealthState.ALIVE
 
 func _enter_tree() -> void:
 	_max_health.set_scaling_func(func(b: float, l: int) -> float:
-		return b * (1.0 + (l - 1) * 0.1)
+		return b * (1.0 + (l - 1) * 0.5)
 		)
 	_max_health.scalar = maxi(level.value(), 1)
 	level.changed.connect(func(new_value: int) -> void:

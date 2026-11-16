@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://824a11xmuhwc"]
+
+[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts/weapon/weapon_data.gd" id="1_jxoom"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="1_sdk4b"]
+[ext_resource type="PackedScene" uid="uid://cvd23y3umpox2" path="res://src/scenes/items/weapon_drop.tscn" id="2_ntqfy"]
+[ext_resource type="PackedScene" uid="uid://b8wko4u6gr2hq" path="res://src/scenes/weapons/pistol.tscn" id="4_503t8"]
+
+[sub_resource type="Resource" id="Resource_axtq5"]
+script = ExtResource("1_sdk4b")
+base = 7.0
+metadata/_custom_type_script = "uid://dcbjus20o1o1n"
+
+[resource]
+script = ExtResource("1_jxoom")
+weapon_name = "Burst Pistol"
+weapon_id = &"burst_pistol"
+_fire_type = 1
+rarity = 1
+_burst_fire_delay = 0.3
+_burst_count = 3
+_burst_interval = 0.05
+_burst_rpm = 450
+_burst_rps = 7.5
+damage = SubResource("Resource_axtq5")
+max_ammo = 36
+reload_time = 0.9
+pierce = 2
+projectile_range = 60.0
+projectile_velocity = 80.0
+spread_angle = 6.0
+weapon_scene = ExtResource("4_503t8")
+item_scene = ExtResource("2_ntqfy")
+metadata/_custom_type_script = "uid://fa70vcd32qay"

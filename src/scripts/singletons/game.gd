@@ -30,8 +30,11 @@ signal inventory_closed
 @export var game_map: Node3D
 @export var main_menu_camera: Node
 @export var ui_canvas_root: CanvasLayer
-@export var spawner_pos: Node3D # INFO TEMPORARY
-@export var spawner_datas: Array[SpawnerData]
+@export var spawner_pos: Node3D # INFO temporary
+# @export var spawner_datas: Array[SpawnerData]
+@export var cube_spawner_data: SpawnerData
+@export var cuboid_spawner_data: SpawnerData
+@export var cylinder_spawner_data: SpawnerData
 
 enum AmmoType {
 	BULLET = 0,
@@ -158,6 +161,7 @@ func _enter_tree() -> void:
 	enemy_died.connect(_on_enemy_died)
 	player_died.connect(func() -> void:
 		_player_death_count += 1
+		_playing = false
 		)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -171,15 +175,17 @@ func _ready() -> void:
 
 	_spawn_starter_weapon()
 
-	_load_data()
 	go_to_main_menu()
 
-	wave_finished.connect(func(wave_number: int) -> void:
-		print("finished wave %d" % wave_number)
-		print("starting wave %d in 1 second...\n" % (wave_number + 1))
+	wave_finished.connect(func(__wave_number: int) -> void:
+		# print("finished wave %d" % wave_number)
+		# print("starting wave %d in 1 second...\n" % (wave_number + 1))
 		await get_tree().create_timer(1.0).timeout
 		_start_next_wave()
 		)
+
+	await Utils.delay_frame()
+	_load_data()
 
 
 func _process(_delta: float) -> void:
@@ -216,22 +222,49 @@ func start() -> void:
 	_paused = false
 	start_wave(1)
 	# NOTE temporary
-	player.get_inventory().set_ammo(100, Game.AmmoType.BULLET, Game.AmmoWeight.LIGHT)
+	player.get_inventory().set_ammo(400, Game.AmmoType.BULLET, Game.AmmoWeight.LIGHT)
 
 
 func start_wave(wave_number: int) -> void:
 	print("starting wave %d" % wave_number)
 	_wave_number = wave_number
 	var wave_enemy_count := 0
-	for spawner_data: SpawnerData in spawner_datas:
-		if _wave_number >= spawner_data.starting_wave:
-			var spawner := Spawner.new(spawner_data)
-			spawner.level.set_value(wave_number)
-			spawner.activate()
-			wave_enemy_count += spawner.data.total_spawn_amount
-			print("spawner (%d | %d) activated" % [spawner_data.starting_wave, wave_number])
-		else:
-			print("spawner (%d | %d) NOT activated" % [spawner_data.starting_wave, wave_number])
+	var enemy_amount_to_spawn := int(5 + (_wave_number * 0.95))
+	# INFO disabled for now
+	# for spawner_data: SpawnerData in spawner_datas:
+	# 	if _wave_number >= spawner_data.starting_wave:
+	# 		var spawner := Spawner.new(spawner_data)
+	# 		spawner.level.set_value(wave_number)
+	# 		spawner.activate()
+	# 		wave_enemy_count += spawner.data.total_spawn_amount
+	# 		print("spawner (%d | %d) activated" % [spawner_data.starting_wave, wave_number])
+	# 	else:
+	# 		print("spawner (%d | %d) NOT activated" % [spawner_data.starting_wave, wave_number])
+	#region temp
+
+	# INFO hardcoded for now
+	var spawner1 := Spawner.new(cube_spawner_data)
+	spawner1.level.set_value(wave_number)
+	spawner1.activate()
+	spawner1.data.total_spawn_amount = int(enemy_amount_to_spawn * 0.5)
+	wave_enemy_count += spawner1.data.total_spawn_amount
+
+	if _wave_number >= 5:
+		var spawner2 := Spawner.new(cuboid_spawner_data)
+		spawner2.level.set_value(wave_number)
+		spawner2.activate()
+		spawner2.data.total_spawn_amount = int(enemy_amount_to_spawn * 0.2)
+		wave_enemy_count += spawner2.data.total_spawn_amount
+
+	if _wave_number >= 10:
+		var spawner3 := Spawner.new(cylinder_spawner_data)
+		spawner3.level.set_value(wave_number)
+		spawner3.activate()
+		spawner3.data.total_spawn_amount = int(enemy_amount_to_spawn * 0.3)
+		wave_enemy_count += spawner3.data.total_spawn_amount
+
+	#endregion
+
 	_wave_enemies_left = wave_enemy_count
 	print("enemies to kill in this wave: %d\n\n" % _wave_enemies_left)
 	player.level.set_value(_wave_number)
@@ -281,8 +314,9 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	_wave_enemies_left -= 1
 	_enemy_kill_count += 1
 	_score += int(10 + ((_wave_number - 1) * 0.5))
-	var weapon_drop: bool = randf() <= 0.02
+	var weapon_drop: bool = randf() <= 0.20 - minf((_wave_number - 1) * 0.005, 0.15)
 	if weapon_drop:
+		print("dropping weapon")
 		var rarity_set := RaritySet.new()
 		var rarity := rarity_set.roll()
 		var pos_x := enemy.global_position.x + randf_range(-1.0, 1.0)
@@ -300,13 +334,13 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	# if coin_drop:
 	# 	var amount := int((1.0 + ((enemy.level.value() - 1) * 0.1)) * randi_range(10, 100))
 	# 	Spawner.spawn_coin(amount, enemy.position)
-	var ammo_drop: bool = randf() <= 0.05
+	var ammo_drop: bool = randf() <= 0.80 - minf((_wave_number - 1) * 0.01, 0.70)
 	if ammo_drop:
 		var type: AmmoType = AmmoType.values().pick_random()
 		var weight: AmmoWeight = AmmoWeight.values().pick_random()
 		var level_mult: float = 1.0 + ((enemy.level.value() - 1) * 0.1)
 		var type_mult: float = 4.0 if type == AmmoType.BULLET else 1.0
-		var weight_mult: float = 3.0 - float(weight)
+		var weight_mult: float = 5.0 - float(weight * 2)
 		var amount := int(randi_range(1, 10) * level_mult * type_mult * weight_mult)
 		Spawner.spawn_ammo(amount, type, weight, enemy.position)
 
@@ -325,6 +359,9 @@ func _load_data() -> void:
 	var err := config.load_encrypted_pass(SAVE_LOAD_PATH, SAVE_LOAD_PASSWORD)
 
 	if err != OK:
+		_high_score = 0
+		_best_wave = 0
+		print("fail")
 		return
 
 	_high_score = config.get_value("general", "high_score", 0)
@@ -334,9 +371,10 @@ func _load_data() -> void:
 func _spawn_starter_weapon() -> void:
 	var item_pos := Vector3(randf_range(-3.0, 3.0), 2.0, randf_range(-7.0, -3.0))
 	var weapon_data: WeaponData
-	if OS.has_feature("editor"):
-		weapon_data = test_weapon_data
-	else:
-		weapon_data = starter_weapon_data
+	# if OS.has_feature("editor"):
+	# 	weapon_data = test_weapon_data
+	# else:
+	# 	weapon_data = starter_weapon_data
+	weapon_data = starter_weapon_data
 	weapon_data.level.set_value(1)
 	Spawner.spawn_weapon(weapon_data, item_pos)

@@ -14,38 +14,33 @@
 [ext_resource type="FontFile" uid="uid://c6aj2iphg5erv" path="res://assets/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf" id="6_x75jv"]
 [ext_resource type="Script" uid="uid://57nvopw0y6cr" path="res://src/scripts/ui/game_version_label.gd" id="7_s0bkk"]
 
-[sub_resource type="Resource" id="Resource_7xcce"]
+[sub_resource type="Resource" id="Resource_pg1kh"]
 script = ExtResource("2_6fxmi")
 spawn_scene = ExtResource("3_tn3mo")
-spawn_position = Vector3(0, 0, -10)
-total_spawn_amount = 24
-spawn_amount = 3
-spawn_interval = 0.75
-spawn_limit = 12
+spawn_position = Vector3(0, 0, -40)
+spawn_amount = 5
+spawn_interval = 1.5
+spawn_limit = 20
 spawn_radius = 20.0
 metadata/_custom_type_script = "uid://dyc17kh50b4rk"
 
-[sub_resource type="Resource" id="Resource_mabam"]
+[sub_resource type="Resource" id="Resource_hds2c"]
 script = ExtResource("2_6fxmi")
-starting_wave = 2
 spawn_scene = ExtResource("4_17eu8")
-spawn_position = Vector3(0, 0, -10)
-total_spawn_amount = 16
+spawn_position = Vector3(0, 0, -40)
 spawn_amount = 2
-spawn_interval = 1.0
-spawn_limit = 8
+spawn_interval = 2.0
+spawn_limit = 10
 spawn_radius = 20.0
 metadata/_custom_type_script = "uid://dyc17kh50b4rk"
 
-[sub_resource type="Resource" id="Resource_6fxmi"]
+[sub_resource type="Resource" id="Resource_bpmo2"]
 script = ExtResource("2_6fxmi")
-starting_wave = 3
 spawn_scene = ExtResource("5_tn3mo")
-spawn_position = Vector3(0, 0, -10)
-total_spawn_amount = 32
+spawn_position = Vector3(0, 0, -40)
 spawn_amount = 3
 spawn_interval = 0.5
-spawn_limit = 16
+spawn_limit = 15
 spawn_radius = 20.0
 metadata/_custom_type_script = "uid://dyc17kh50b4rk"
 
@@ -189,7 +184,9 @@ game_map = NodePath("../../GameWorld/Map")
 main_menu_camera = NodePath("MainMenuCamera")
 ui_canvas_root = NodePath("../../CanvasLayer")
 spawner_pos = NodePath("../../GameWorld/Holders/Spawners/Node3D")
-spawner_datas = Array[ExtResource("2_6fxmi")]([SubResource("Resource_7xcce"), SubResource("Resource_mabam"), SubResource("Resource_6fxmi")])
+cube_spawner_data = SubResource("Resource_pg1kh")
+cuboid_spawner_data = SubResource("Resource_hds2c")
+cylinder_spawner_data = SubResource("Resource_bpmo2")
 metadata/_custom_type_script = "uid://dcmhvmc603jsl"
 
 [node name="MainMenuCamera" type="Camera3D" parent="Singletons/Game" unique_id=1834265182]
@@ -605,12 +602,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/line_separation = 6
 bbcode_enabled = true
-text = "[center]1.0.0[color=light_green]a[/color][/center][font_size=12][ul]
+text = "[center]1.0.0-[color=light_green]alpha[/color][/center][font_size=12][ul]
 added a wave system
 added a level system
+added an ammo system
 [/ul]
 [/font_size]
-[center]1.2.0[color=light_blue]p[/color][/center][font_size=12][ul]
+[center]1.2.0-[color=light_blue]prototype[/color][/center][font_size=12][ul]
 added a rarity system
 added a score system (saves locally)
 added 4 new (burst) weapons
@@ -623,14 +621,14 @@ fixed some bugs
 and more
 [/ul]
 [/font_size]
-[center]1.1.0[color=light_blue]p[/color][/center][font_size=12][ul]
+[center]1.1.0-[color=light_blue]prototype[/color][/center][font_size=12][ul]
 added an inventory system
 added 5 new weapons
 enemies now have a chance to drop a weapon on death
 updated main menu
 [/ul]
 [/font_size]
-[center]1.0.1[color=light_blue]p[/color][/center][font_size=12][ul]
+[center]1.0.1-[color=light_blue]prototype[/color][/center][font_size=12][ul]
 fixed a bug making the player being unable to kill after one death
 enemies are now killed after a restart
 [/ul]

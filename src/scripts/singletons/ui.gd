@@ -60,14 +60,14 @@ func _ready() -> void:
 	_menus.append(pause_menu)
 	_menus.append(death_menu)
 	_menus.append(inventory_menu)
-	
+
 	await Utils.delay_frame()
 	_init_inventory_slots()
 	var inv := Game.inst.player.get_inventory()
 	inv.index_changed.connect(_on_inventory_index_changed)
 	inv.weapon_equipped.connect(_on_inventory_weapon_equipped)
 	inv.weapon_unequipped.connect(_on_inventory_weapon_unequipped)
-	
+
 	hide_overlay(gameplay_overlay)
 	show_menu(main_menu)
 
@@ -82,7 +82,7 @@ func _init_ui_signals() -> void:
 	# death menu
 	death_menu_restart_button.pressed.connect(Game.inst.start)
 	death_menu_main_menu_button.pressed.connect(Game.inst.go_to_main_menu)
-	
+
 	gameplay_overlay_player_ammo_label.text = "0 / 0"
 	gameplay_overlay_player_bullet_ammo_reserve_label.text = "Bullets  0 L / 0 M / 0 H"
 	gameplay_overlay_player_shell_ammo_reserve_label.text = "Shells   0 L / 0 M / 0 H"

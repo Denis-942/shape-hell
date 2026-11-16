@@ -7,18 +7,19 @@
 
 [sub_resource type="Resource" id="Resource_7okld"]
 script = ExtResource("1_kh7pj")
-base = 5.0
+base = 6.0
 metadata/_custom_type_script = "uid://dcbjus20o1o1n"
 
 [resource]
 script = ExtResource("1_j5mfu")
 weapon_name = "Pistol"
 weapon_id = &"pistol"
-_single_rpm = 480
-_single_rps = 8.0
-_single_fire_delay = 0.125
+_single_rpm = 300
+_single_rps = 5.0
+_single_fire_delay = 0.2
 damage = SubResource("Resource_7okld")
-max_ammo = 12
+max_ammo = 15
+reload_time = 0.6
 pierce = 2
 projectile_range = 70.0
 projectile_velocity = 60.0

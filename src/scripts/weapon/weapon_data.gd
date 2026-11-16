@@ -22,7 +22,7 @@ enum Type {
 		_auto_weapon_id = value
 		if _auto_weapon_id:
 			weapon_id = weapon_name.to_snake_case()
-		
+
 ## @experimental
 @export var weapon_id: StringName
 
@@ -157,7 +157,7 @@ func _init() -> void:
 	await Utils.delay_frame()
 	assert(damage != null)
 	damage.set_scaling_func(func(b: float, l: int) -> float:
-		return b * (1.0 + (l - 1) * 0.1)
+		return b * (1.0 + (l - 1) * 0.3)
 		)
 
 

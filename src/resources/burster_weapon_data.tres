@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_fb1g7"]
 script = ExtResource("1_xt6xi")
-base = 8.0
+base = 10.0
 metadata/_custom_type_script = "uid://dcbjus20o1o1n"
 
 [resource]
@@ -16,14 +16,15 @@ weapon_name = "Burster"
 weapon_id = &"burster"
 _fire_type = 1
 rarity = 3
-_burst_fire_delay = 0.9
+_burst_fire_delay = 0.7
 _burst_count = 10
-_burst_interval = 0.05
-_burst_rpm = 444
-_burst_rps = 7.4074074074074066
+_burst_interval = 0.02
+_burst_rpm = 681
+_burst_rps = 11.363636363636365
 damage = SubResource("Resource_fb1g7")
 ammo_weight = 1
-max_ammo = 45
+max_ammo = 100
+reload_time = 3.0
 pierce = 4
 projectile_range = 60.0
 projectile_velocity = 90.0

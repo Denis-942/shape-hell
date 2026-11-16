@@ -3,7 +3,7 @@ class_name Enemy
 
 @export var rarity_set: RaritySet
 
-@export var _damage: float = 10.0
+@export var _damage: ScalableValue
 @export var _speed: float = 1.0
 @export var _attack_rate: float = 1.0
 
@@ -19,7 +19,18 @@ var _attack_on_cooldown: bool = false
 @export var _color: Color
 
 
+# func _enter_tree() -> void:
+
+
 func _ready() -> void:
+	_damage.set_scaling_func(func(b: float, l: int) -> float:
+		return b * (1.0 + (l - 1) * 0.5)
+		)
+	_damage.scalar = maxi(level.value(), 1)
+	level.changed.connect(func(new_value: int) -> void:
+		_damage.scalar = maxi(new_value, 1)
+		)
+
 	_player = Game.inst.player
 	_player_detection_area.body_entered.connect(_on_player_detection_area_body_entered)
 	_player_attack_area.body_entered.connect(_on_player_attack_area_body_entered)
@@ -31,18 +42,19 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(Vector3.ZERO) > 100.0:
 		_take_damage(get_max_health())
 		print("Out of bounds")
-	
+
 	_handle_gravity(delta)
-	
+
 	if _player == null:
 		move_and_slide()
 		return
-	
+
 	if _can_attack_player():
 		await _attack_player()
-	
-	var dir: Vector3 = position.direction_to(_player.position)
-	#dir.y = velocity.y
+
+	var dir: Vector3
+	if not _player_in_attack_range:
+		dir = position.direction_to(_player.position)
 	velocity = Vector3(dir.x * _speed, velocity.y, dir.z * _speed)
 	look_at(_player.position)
 	move_and_slide()
@@ -67,7 +79,8 @@ func _on_player_attack_area_body_exited(body: Node) -> void:
 
 
 func _attack_player() -> void:
-	_player.take_damage(_damage)
+	var dmg: float = _damage.base
+	_player.take_damage(dmg)
 	_attack_on_cooldown = true
 	#await Utils.delay_s(_attack_rate)
 	await get_tree().create_timer(_attack_rate).timeout
