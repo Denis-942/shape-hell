@@ -168,12 +168,12 @@ func _ready() -> void:
 	_player_death_count = 0
 	_high_score = 0
 	_best_wave = 0
-	
+
 	_spawn_starter_weapon()
-	
+
 	_load_data()
 	go_to_main_menu()
-	
+
 	wave_finished.connect(func(wave_number: int) -> void:
 		print("finished wave %d" % wave_number)
 		print("starting wave %d in 1 second...\n" % (wave_number + 1))
@@ -189,7 +189,7 @@ func _process(_delta: float) -> void:
 				pause()
 			else:
 				unpause()
-	
+
 	if Input.is_action_just_pressed("toggle_inventory"):
 		if is_playing():
 			if not is_paused():
@@ -215,7 +215,7 @@ func start() -> void:
 	_playing = true
 	_paused = false
 	start_wave(1)
-	# NOTE temporary 
+	# NOTE temporary
 	player.get_inventory().set_ammo(100, Game.AmmoType.BULLET, Game.AmmoWeight.LIGHT)
 
 
@@ -280,8 +280,8 @@ func _load_weapon_datas() -> void:
 func _on_enemy_died(enemy: Enemy) -> void:
 	_wave_enemies_left -= 1
 	_enemy_kill_count += 1
-	_score += 100
-	var weapon_drop: bool = randf() <= 0.05
+	_score += int(10 + ((_wave_number - 1) * 0.5))
+	var weapon_drop: bool = randf() <= 0.02
 	if weapon_drop:
 		var rarity_set := RaritySet.new()
 		var rarity := rarity_set.roll()
@@ -295,11 +295,12 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		var weapon_data: WeaponData = datas.pick_random()
 		weapon_data.level.set_value(enemy.level.value())
 		Spawner.spawn_weapon(weapon_data, item_pos)
-	var coin_drop: bool = randf() <= 0.25
-	if coin_drop:
-		var amount := int((1.0 + ((enemy.level.value() - 1) * 0.1)) * randi_range(10, 100))
-		Spawner.spawn_coin(amount, enemy.position)
-	var ammo_drop: bool = randf() <= 0.2
+	# INFO temporary disabled
+	# var coin_drop: bool = randf() <= 0.25
+	# if coin_drop:
+	# 	var amount := int((1.0 + ((enemy.level.value() - 1) * 0.1)) * randi_range(10, 100))
+	# 	Spawner.spawn_coin(amount, enemy.position)
+	var ammo_drop: bool = randf() <= 0.05
 	if ammo_drop:
 		var type: AmmoType = AmmoType.values().pick_random()
 		var weight: AmmoWeight = AmmoWeight.values().pick_random()
@@ -322,10 +323,10 @@ func _save_data() -> void:
 func _load_data() -> void:
 	var config := ConfigFile.new()
 	var err := config.load_encrypted_pass(SAVE_LOAD_PATH, SAVE_LOAD_PASSWORD)
-	
+
 	if err != OK:
 		return
-	
+
 	_high_score = config.get_value("general", "high_score", 0)
 	_best_wave = config.get_value("general", "best_wave", 0)
 
