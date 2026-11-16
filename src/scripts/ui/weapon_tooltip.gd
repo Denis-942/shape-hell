@@ -5,10 +5,11 @@ class_name WeaponTooltip
 @export var weapon_name_label: Label
 @export var weapon_level_label: RichTextLabel
 @export var rarity_label: RichTextLabel
+@export var fire_type_label: RichTextLabel
 @export var damage_label: RichTextLabel
 @export var burst_label: RichTextLabel
 @export var rpm_label: RichTextLabel
-@export var max_ammo_label: RichTextLabel
+@export var ammo_label: RichTextLabel
 @export var ammo_type_label: RichTextLabel
 @export var ammo_weight_label: RichTextLabel
 @export var reload_time_label: RichTextLabel
@@ -25,13 +26,25 @@ func display(data: WeaponData) -> void:
 	rarity_label.text = "[color=%s]%s" % [
 		Game.RARITY_COLORS[data.rarity].to_html(),
 		Utils.enum_to_string(Game.Rarity)[data.rarity]]
+
+	var fire_type_string: String
+	if data.is_single_fire():
+		fire_type_string = "Single Fire"
+	elif data.is_burst_fire():
+		fire_type_string = "Burst Fire"
+	elif data.is_shotgun():
+		fire_type_string = "Shotgun"
+	else:
+		push_warning("Not a valid fire type")
+	fire_type_label.text = fire_type_string
+
 	var padding := 34
 	damage_label.text = "[color=#eee]Damage[/color]".rpad(padding) + str(data.damage.scaled)
 	burst_label.visible = data.is_burst_fire()
 	burst_label.text = "[color=#eee]Burst[/color]".rpad(padding) + str(data.get_burst_count())
 	rpm_label.text = "[color=#eee]Firerate[/color]".rpad(padding) + "%d [color=gray]rpm" % data.rpm
 
-	max_ammo_label.text = "[color=#eee]Max Ammo[/color]".rpad(padding) + str(data.max_ammo)
+	ammo_label.text = "[color=#eee]Ammo[/color]".rpad(padding) + "%d / %d" % [data.ammo, data.max_ammo]
 	var ammo_type_enum_str := Utils.enum_to_string(Game.AmmoType)[data.ammo_type].to_pascal_case()
 	ammo_type_label.text = "[color=#eee]Ammo Type[/color]".rpad(padding) + ammo_type_enum_str
 	var ammo_weight_enum_str := Utils.enum_to_string(Game.AmmoWeight)[data.ammo_weight].to_pascal_case()

@@ -10,20 +10,19 @@ static func enum_to_string(enum_dict: Dictionary) -> PackedStringArray:
 static func get_game_version() -> String:
 	return ProjectSettings.get_setting("application/config/version")
 
-static func get_game_version_pretty() -> String:
+static func _get_game_version_pretty() -> String:
 	var version: String = ProjectSettings.get_setting("application/config/version")
-	match version[-1]:
-		"p":
-			return "Prototype v%s" % version.trim_suffix("p")
-		"a":
-			return "Alpha v%s" % version.trim_suffix("a")
-		"b":
-			return "Beta v%s" % version.trim_suffix("b")
-		_ when version[-1].is_valid_int():
-			return "v%s" % version
-		_:
-			push_error("Incorrect game version format in ProjectSettings/application/config/version")
-			return ""
+	if version.ends_with("-prototype"):
+		return "Prototype v%s" % version.trim_suffix("-prototype")
+	elif version.ends_with("-alpha"):
+		return "Alpha v%s" % version.trim_suffix("-alpha")
+	elif version.ends_with("-beta"):
+		return "Beta v%s" % version.trim_suffix("-beta")
+	elif version[-1].is_valid_int():
+		return "v%s" % version
+	else:
+		push_warning("Incorrect game version format in ProjectSettings/application/config/version")
+		return "<error>"
 
 
 static func class_name_of(object: Object) -> StringName:
@@ -163,24 +162,24 @@ static func print_project_code_info(scripts_folder_path: String = "res://src/scr
 static func get_files_in_folder(path: String) -> Array[String]:
 	var files: Array[String]
 	var dir := DirAccess.open(path)
-	
+
 	dir.list_dir_begin()
 	var filename := dir.get_next()
-	
+
 	while filename != "":
 		if filename == "." or filename == "..":
 			dir.get_next()
 			continue
-		
+
 		if dir.current_is_dir():
 			var sub_path := path.path_join(filename)
 			files.append_array(get_files_in_folder(sub_path))
 		else:
 			files.append(path.path_join(filename))
-		
+
 		filename = dir.get_next()
 	dir.list_dir_end()
-	
+
 	return files
 
 static func get_code_lines_in_folder(folder_path: String) -> int:
@@ -189,7 +188,7 @@ static func get_code_lines_in_folder(folder_path: String) -> int:
 	files = files.filter(func(s: String) -> bool:
 		return s.ends_with(".gd")
 		)
-	
+
 	var count := 0
 	for path: String in files:
 		var file := FileAccess.open(path, FileAccess.READ)
@@ -199,7 +198,7 @@ static func get_code_lines_in_folder(folder_path: String) -> int:
 				continue
 			count += 1
 		file.close()
-	
+
 	return count
 
 static func get_code_chars_in_folder(folder_path: String) -> int:
@@ -208,7 +207,7 @@ static func get_code_chars_in_folder(folder_path: String) -> int:
 	files = files.filter(func(s: String) -> bool:
 		return s.ends_with(".gd")
 		)
-	
+
 	var count := 0
 	for path: String in files:
 		var file := FileAccess.open(path, FileAccess.READ)
@@ -221,7 +220,7 @@ static func get_code_chars_in_folder(folder_path: String) -> int:
 					continue
 				count += 1
 		file.close()
-	
+
 	return count
 
 #endregion

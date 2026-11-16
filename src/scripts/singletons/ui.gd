@@ -7,6 +7,7 @@ extends Node
 @export var main_menu_quit_button: Button
 @export var main_menu_high_score_label: Label
 @export var main_menu_best_wave_label: Label
+@export var main_menu_playtime_label: Label
 @export var main_menu_camera: Camera3D
 
 @export_subgroup("Pause Menu", "pause_menu_")
@@ -94,6 +95,9 @@ func _init_game_signals() -> void:
 	Game.inst.score_changed.connect(_on_game_score_changed)
 	Game.inst.high_score_changed.connect(_on_game_high_score_changed)
 	Game.inst.best_wave_changed.connect(_on_game_best_wave_changed)
+	Game.inst.playtime_changed.connect(func(new_value_s: float) -> void:
+		main_menu_playtime_label.text = "Playtime: %ds" % int(new_value_s)
+		)
 	Game.inst.enemy_kill_count_changed.connect(func(value: int) -> void:
 		death_menu_enemy_kill_count_label.text = "Enemies killed in this life: %d" % value
 		)

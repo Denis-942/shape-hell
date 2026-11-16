@@ -17,6 +17,7 @@ signal enemy_kill_count_changed(new_value: int)
 signal score_changed(new_value: int)
 signal high_score_changed(new_value: int)
 signal best_wave_changed(new_value: int)
+signal playtime_changed(new_value_s: int)
 signal inventory_opened
 signal inventory_closed
 
@@ -78,6 +79,10 @@ static var inst: Game:
 			return
 		else:
 			inst = value
+
+
+var _last_played_version: String
+
 
 var _playing: bool = false:
 	get:
@@ -147,6 +152,15 @@ var _best_wave: int:
 		best_wave_changed.emit(_best_wave)
 
 
+var _playtime: float:
+	get:
+		return _playtime
+	set(value):
+		_playtime = value
+		playtime_changed.emit(_playtime)
+
+
+
 var _wave_enemies_left: int:
 	get:
 		return _wave_enemies_left
@@ -170,10 +184,9 @@ func _ready() -> void:
 	_load_weapon_datas()
 	_enemy_kill_count = 0
 	_player_death_count = 0
-	_high_score = 0
-	_best_wave = 0
-
-	_spawn_starter_weapon()
+	# _high_score = 0
+	# _best_wave = 0
+	# _playtime = 0.0
 
 	go_to_main_menu()
 
@@ -187,8 +200,12 @@ func _ready() -> void:
 	await Utils.delay_frame()
 	_load_data()
 
+	_last_played_version = Utils.get_game_version()
+	print(_playtime)
+	print(_last_played_version)
 
-func _process(_delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_pause"):
 		if is_playing():
 			if not is_paused():
@@ -205,18 +222,22 @@ func _process(_delta: float) -> void:
 				unpause()
 				inventory_closed.emit()
 
+	_playtime += delta
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		quit()
+
+# func _notification(what: int) -> void:
+# 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+# 		quit()
 
 
 func start() -> void:
 	_score = 0
 	_enemy_kill_count = 0
 	_kill_all_enemies()
+	_clear_all_drops()
+	player.get_inventory().clear()
+	_spawn_starter_weapon()
 	player.global_position = Vector3(0, 2.0, 0)
-	#print.call_deferred(nodes.player.get_health())
 	player.heal(player.get_max_health())
 	_playing = true
 	_paused = false
@@ -270,6 +291,7 @@ func start_wave(wave_number: int) -> void:
 	player.level.set_value(_wave_number)
 	test_dummy.level.set_value(_wave_number)
 	wave_started.emit(_wave_number)
+	_save_data()
 
 
 func _start_next_wave() -> void:
@@ -292,14 +314,22 @@ func go_to_main_menu() -> void:
 	_playing = false
 
 func quit() -> void:
-	_save_data()
 	get_tree().quit()
+
+
+func _exit_tree() -> void:
+	_save_data()
 
 
 func _kill_all_enemies() -> void:
 	for entity: Entity in entity_holder.get_children():
 		if entity is Enemy:
 			entity.queue_free()
+
+func _clear_all_drops() -> void:
+	for drop: ItemDrop in item_holder.get_children():
+		if drop is ItemDrop:
+			drop.queue_free()
 
 
 func _load_weapon_datas() -> void:
@@ -349,8 +379,10 @@ func _on_enemy_died(enemy: Enemy) -> void:
 # temporary saving stuff
 func _save_data() -> void:
 	var config := ConfigFile.new()
-	config.set_value("general", "high_score", _high_score)
-	config.set_value("general", "best_wave", _best_wave)
+	config.set_value("stats", "high_score", _high_score)
+	config.set_value("stats", "best_wave", _best_wave)
+	config.set_value("stats", "playtime", _playtime)
+	config.set_value("general", "last_played_version", _last_played_version)
 	config.save_encrypted_pass(SAVE_LOAD_PATH, SAVE_LOAD_PASSWORD)
 
 # temporary loading stuff
@@ -361,15 +393,18 @@ func _load_data() -> void:
 	if err != OK:
 		_high_score = 0
 		_best_wave = 0
-		print("fail")
+		_playtime = 0.0
+		push_warning("fail to load data")
 		return
 
-	_high_score = config.get_value("general", "high_score", 0)
-	_best_wave = config.get_value("general", "best_wave", 0)
+	_high_score = config.get_value("stats", "high_score", 0)
+	_best_wave = config.get_value("stats", "best_wave", 0)
+	_playtime = config.get_value("stats", "playtime", 0.0)
+	_last_played_version = config.get_value("general", "last_played_version", "")
 
 
 func _spawn_starter_weapon() -> void:
-	var item_pos := Vector3(randf_range(-3.0, 3.0), 2.0, randf_range(-7.0, -3.0))
+	var item_pos := Vector3(randf_range(-3.0, 3.0), 2.0, randf_range(-7.0, -5.0))
 	var weapon_data: WeaponData
 	# if OS.has_feature("editor"):
 	# 	weapon_data = test_weapon_data

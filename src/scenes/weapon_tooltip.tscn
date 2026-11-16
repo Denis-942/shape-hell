@@ -17,17 +17,18 @@ corner_radius_bottom_left = 8
 [sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
 line_spacing = -2.0
 
-[node name="WeaponTooltip" type="Control" unique_id=1328970718 node_paths=PackedStringArray("weapon_name_label", "weapon_level_label", "rarity_label", "damage_label", "burst_label", "rpm_label", "max_ammo_label", "ammo_type_label", "ammo_weight_label", "reload_time_label", "pierce_label", "range_label", "velocity_label", "spread_label")]
+[node name="WeaponTooltip" type="Control" unique_id=1328970718 node_paths=PackedStringArray("weapon_name_label", "weapon_level_label", "rarity_label", "fire_type_label", "damage_label", "burst_label", "rpm_label", "ammo_label", "ammo_type_label", "ammo_weight_label", "reload_time_label", "pierce_label", "range_label", "velocity_label", "spread_label")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nwery")
 weapon_name_label = NodePath("PanelContainer/VBoxContainer/NameLabel")
 weapon_level_label = NodePath("PanelContainer/VBoxContainer/Level")
 rarity_label = NodePath("PanelContainer/VBoxContainer/Rarity")
+fire_type_label = NodePath("PanelContainer/VBoxContainer/FireType")
 damage_label = NodePath("PanelContainer/VBoxContainer/Stats/Damage")
 burst_label = NodePath("PanelContainer/VBoxContainer/Stats/Burst")
 rpm_label = NodePath("PanelContainer/VBoxContainer/Stats/Rpm")
-max_ammo_label = NodePath("PanelContainer/VBoxContainer/Stats/MaxAmmo")
+ammo_label = NodePath("PanelContainer/VBoxContainer/Stats/Ammo")
 ammo_type_label = NodePath("PanelContainer/VBoxContainer/Stats/AmmoType")
 ammo_weight_label = NodePath("PanelContainer/VBoxContainer/Stats/AmmoWeight")
 reload_time_label = NodePath("PanelContainer/VBoxContainer/Stats/ReloadTime")
@@ -82,6 +83,16 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
+[node name="FireType" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=759882142]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_pg1kh")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Single Fire"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
 [node name="Stats" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=990561412]
 layout_mode = 2
 
@@ -112,12 +123,12 @@ text = "Rpm: x"
 fit_content = true
 autowrap_mode = 0
 
-[node name="MaxAmmo" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=703060607]
+[node name="Ammo" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Stats" unique_id=703060607]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_pg1kh")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Max Ammo: x"
+text = "Ammo: x / x"
 fit_content = true
 autowrap_mode = 0
 

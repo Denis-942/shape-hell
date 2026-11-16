@@ -253,7 +253,7 @@ transform = Transform3D(0.1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8.
 visible = false
 texture = SubResource("GradientTexture2D_bhunq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1001293988 node_paths=PackedStringArray("main_menu", "main_menu_start_button", "main_menu_quit_button", "main_menu_high_score_label", "main_menu_best_wave_label", "main_menu_camera", "pause_menu", "pause_menu_resume_button", "pause_menu_main_menu_button", "death_menu", "death_menu_restart_button", "death_menu_main_menu_button", "death_menu_enemy_kill_count_label", "inventory_menu", "inventory_menu_equip_slot", "inventory_menu_slots", "gameplay_overlay", "gameplay_overlay_score_label", "gameplay_overlay_high_score_label", "gameplay_overlay_wave_label", "gameplay_overlay_best_wave_label", "gameplay_overlay_player_health_progress_bar", "gameplay_overlay_player_health_label", "gameplay_overlay_player_health_percentage_label", "gameplay_overlay_player_ammo_label", "gameplay_overlay_player_bullet_ammo_reserve_label", "gameplay_overlay_player_shell_ammo_reserve_label")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1001293988 node_paths=PackedStringArray("main_menu", "main_menu_start_button", "main_menu_quit_button", "main_menu_high_score_label", "main_menu_best_wave_label", "main_menu_playtime_label", "main_menu_camera", "pause_menu", "pause_menu_resume_button", "pause_menu_main_menu_button", "death_menu", "death_menu_restart_button", "death_menu_main_menu_button", "death_menu_enemy_kill_count_label", "inventory_menu", "inventory_menu_equip_slot", "inventory_menu_slots", "gameplay_overlay", "gameplay_overlay_score_label", "gameplay_overlay_high_score_label", "gameplay_overlay_wave_label", "gameplay_overlay_best_wave_label", "gameplay_overlay_player_health_progress_bar", "gameplay_overlay_player_health_label", "gameplay_overlay_player_health_percentage_label", "gameplay_overlay_player_ammo_label", "gameplay_overlay_player_bullet_ammo_reserve_label", "gameplay_overlay_player_shell_ammo_reserve_label")]
 process_mode = 3
 script = ExtResource("5_x75jv")
 main_menu = NodePath("Menus/MainMenu")
@@ -261,6 +261,7 @@ main_menu_start_button = NodePath("Menus/MainMenu/VBoxContainer/PlayButton")
 main_menu_quit_button = NodePath("Menus/MainMenu/VBoxContainer/QuitButton")
 main_menu_high_score_label = NodePath("Menus/MainMenu/BestScores/HighScoreLabel")
 main_menu_best_wave_label = NodePath("Menus/MainMenu/BestScores/BestWaveLabel")
+main_menu_playtime_label = NodePath("Menus/MainMenu/PlaytimeLabel")
 main_menu_camera = NodePath("../Singletons/Game/MainMenuCamera")
 pause_menu = NodePath("Menus/PauseMenu")
 pause_menu_resume_button = NodePath("Menus/PauseMenu/VBoxContainer/ResumeButton")
@@ -606,6 +607,10 @@ text = "[center]1.0.0-[color=light_green]alpha[/color][/center][font_size=12][ul
 added a wave system
 added a level system
 added an ammo system
+added a new weapon
+rebalanced weapons and enemies
+fixed some bugs
+and more
 [/ul]
 [/font_size]
 [center]1.2.0-[color=light_blue]prototype[/color][/center][font_size=12][ul]
@@ -665,6 +670,15 @@ prefix = "[color=#000a]current game version: "
 suffix = "
 you may encounter bugs"
 metadata/_custom_type_script = "uid://57nvopw0y6cr"
+
+[node name="PlaytimeLabel" type="Label" parent="CanvasLayer/Menus/MainMenu" unique_id=1499150989]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 151.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("6_x75jv")
+text = "Playtime: 000s"
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Menus" unique_id=901347754]
 visible = false

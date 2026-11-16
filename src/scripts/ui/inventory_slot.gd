@@ -41,10 +41,10 @@ func _ready() -> void:
 			__EQUIP_ID:
 				var data := __inventory.get_equipped_weapon_data()
 				__inventory.equip(__inventory.at(__index))
-				__inventory.delete(__index)
+				__inventory.remove_at(__index)
 				__inventory.insert(__index, data)
 			__DELETE_ID:
-				__inventory.delete(__index)
+				__inventory.remove_at(__index)
 			__UNEQUIP_ID:
 				__inventory.unequip()
 		)

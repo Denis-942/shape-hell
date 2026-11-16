@@ -57,9 +57,15 @@ func insert(index: int, weapon: WeaponData) -> void:
 	__weapons[index] = weapon
 	index_changed.emit(index, weapon)
 
-func delete(index: int) -> void:
+func remove_at(index: int) -> void:
 	__weapons[index] = null
 	index_changed.emit(index, null)
+
+func clear() -> void:
+	for index: int in __weapons.size():
+		remove_at(index)
+	weapon_unequipped.emit(__equipped_weapon_data)
+	__equipped_weapon_data = null
 
 
 func equip(weapon: WeaponData) -> void:
