@@ -181,6 +181,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	Utils.print_project_code_info()
+
 	_load_weapon_datas()
 	_enemy_kill_count = 0
 	_player_death_count = 0
