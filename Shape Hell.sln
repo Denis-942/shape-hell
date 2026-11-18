@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shape Hell", "Shape Hell.csproj", "{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{C9BB1DC6-0DD8-4EBA-9677-C31E087AE270}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
