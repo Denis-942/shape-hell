@@ -20,8 +20,8 @@ namespace Game
             // sv.Scalar = 3;
             // GD.Print(sv.Base);
             // GD.Print(sv.Scaled);
+            Level l = new(100);
 
-            Level l = 100;
             GD.Print(l);
         }
     }

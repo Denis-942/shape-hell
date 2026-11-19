@@ -20,8 +20,6 @@ namespace Utils
 
         public static implicit operator int(Level level) => level.Value;
 
-        public static implicit operator Level(int value) => new(value);
-
         public static Level operator +(Level level, int value) => new(level.Value + value);
         public static Level operator -(Level level, int value) => new(level.Value - value);
 
