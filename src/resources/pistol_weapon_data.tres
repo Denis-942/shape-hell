@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://b1qntupxmqjrj"]
 
-[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts/weapon/weapon_data.gd" id="1_j5mfu"]
-[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="1_kh7pj"]
+[ext_resource type="Script" uid="uid://fa70vcd32qay" path="res://src/scripts_old/weapon/weapon_data.gd" id="1_j5mfu"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts_old/other/scaled_value.gd" id="1_kh7pj"]
 [ext_resource type="PackedScene" uid="uid://cvd23y3umpox2" path="res://src/scenes/items/weapon_drop.tscn" id="1_r38gr"]
 [ext_resource type="PackedScene" uid="uid://b8wko4u6gr2hq" path="res://src/scenes/weapons/pistol.tscn" id="3_kh7pj"]
 

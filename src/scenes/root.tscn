@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://cjx40r3c6ut4j"]
 
 [ext_resource type="Texture2D" uid="uid://dfswifwcayn5r" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_cyan_512x512.png" id="1_5orbf"]
-[ext_resource type="Script" uid="uid://dcmhvmc603jsl" path="res://src/scripts/singletons/game.gd" id="1_s0bkk"]
-[ext_resource type="Script" uid="uid://dyc17kh50b4rk" path="res://src/scripts/other/spawner_data.gd" id="2_6fxmi"]
-[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts/other/scaled_value.gd" id="2_17eu8"]
+[ext_resource type="Script" uid="uid://dcmhvmc603jsl" path="res://src/scripts_old/singletons/game.gd" id="1_s0bkk"]
+[ext_resource type="Script" uid="uid://dyc17kh50b4rk" path="res://src/scripts_old/other/spawner_data.gd" id="2_6fxmi"]
+[ext_resource type="Script" uid="uid://dcbjus20o1o1n" path="res://src/scripts_old/other/scaled_value.gd" id="2_17eu8"]
 [ext_resource type="PackedScene" uid="uid://dlafe0w2emrtu" path="res://src/scenes/player.tscn" id="2_uqkm6"]
 [ext_resource type="PackedScene" uid="uid://ch7i3ft5abaoy" path="res://src/scenes/enemies/cube_enemy.tscn" id="3_tn3mo"]
 [ext_resource type="PackedScene" uid="uid://vknjttyq72ak" path="res://src/scenes/enemies/cuboid_enemy.tscn" id="4_17eu8"]
 [ext_resource type="PackedScene" uid="uid://bap8u1vhwec0k" path="res://src/scenes/test_dummy.tscn" id="4_rcsry"]
 [ext_resource type="PackedScene" uid="uid://ckqf8asfesob8" path="res://src/scenes/enemies/cylinder_enemy.tscn" id="5_tn3mo"]
-[ext_resource type="Script" uid="uid://cspwebtcpnd43" path="res://src/scripts/singletons/ui.gd" id="5_x75jv"]
+[ext_resource type="Script" uid="uid://cspwebtcpnd43" path="res://src/scripts_old/singletons/ui.gd" id="5_x75jv"]
 [ext_resource type="PackedScene" uid="uid://dam4lbsyrdl0h" path="res://src/scenes/inventory_slot.tscn" id="6_3rfr3"]
 [ext_resource type="FontFile" uid="uid://c6aj2iphg5erv" path="res://assets/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf" id="6_x75jv"]
-[ext_resource type="Script" uid="uid://57nvopw0y6cr" path="res://src/scripts/ui/game_version_label.gd" id="7_s0bkk"]
+[ext_resource type="Script" uid="uid://57nvopw0y6cr" path="res://src/scripts_old/ui/game_version_label.gd" id="7_s0bkk"]
+[ext_resource type="Script" uid="uid://c68vo56tglquu" path="res://src/scripts/Test.cs" id="14_fb1g7"]
 
 [sub_resource type="Resource" id="Resource_pg1kh"]
 script = ExtResource("2_6fxmi")
@@ -930,3 +931,7 @@ layout_mode = 2
 
 [node name="InventorySlot3" parent="CanvasLayer/Menus/InventoryMenu/Panel/ScrollContainer/InventorySlots" unique_id=1440765545 instance=ExtResource("6_3rfr3")]
 layout_mode = 2
+
+[node name="Test" type="Node" parent="." unique_id=1766870709]
+script = ExtResource("14_fb1g7")
+metadata/_custom_type_script = "uid://c68vo56tglquu"
