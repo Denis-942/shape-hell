@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace Utils
 {
@@ -9,6 +11,7 @@ namespace Utils
         {
             return ProjectSettings.GetSetting("application/config/version").ToString();
         }
+
         public static string GetVersionPretty()
         {
             string version = ProjectSettings.GetSetting("application/config/version").ToString();
@@ -42,6 +45,5 @@ namespace Utils
                 return "";
             }
         }
-
     }
 }

@@ -1,7 +1,8 @@
 using Godot;
 using System;
 using Utils;
-
+using System.Diagnostics.Contracts;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -20,9 +21,26 @@ namespace Game
             // sv.Scalar = 3;
             // GD.Print(sv.Base);
             // GD.Print(sv.Scaled);
-            Level l = new(100);
+            // Level l = new(100);
+            // GD.Print(l);
 
-            GD.Print(l);
+            Dictionary<int, float> entries = new() {
+                {1, 0.4f},
+                {2, 0.3f},
+                {3, 0.2f},
+                {4, 0.1f}
+            };
+            Dice<int> dice = new(new() {
+                {1, 0.4f},
+                {2, 0.3f},
+                {3, 0.2f},
+                // {4, 0.1f}
+            });
+            GD.Print(dice.Roll());
+            GD.Print(dice.Roll());
+            GD.Print(dice.Roll());
+            GD.Print(dice.Roll());
+            GD.Print(dice.Roll());
         }
     }
 }
