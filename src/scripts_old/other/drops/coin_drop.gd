@@ -1,5 +1,5 @@
 extends ItemDrop
-class_name CoinDrop
+# class_name CoinDrop
 
 
 var amount: int

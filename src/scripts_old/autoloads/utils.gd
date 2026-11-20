@@ -152,7 +152,7 @@ static func get_3d_physics_layer(layer_name: StringName) -> int:
 
 #region Fun
 
-static func print_project_code_info(scripts_folder_path: String = "res://src/scripts_old") -> void:
+static func print_project_code_info(scripts_folder_path: String = "res://src") -> void:
 	var lines := get_code_lines_in_folder(scripts_folder_path)
 	var chars := get_code_chars_in_folder(scripts_folder_path)
 	print("-- Project Code Stats --")
@@ -186,7 +186,7 @@ static func get_code_lines_in_folder(folder_path: String) -> int:
 	var files := get_files_in_folder(folder_path)
 
 	files = files.filter(func(s: String) -> bool:
-		return s.ends_with(".gd")
+		return s.ends_with(".gd") or s.ends_with(".cs")
 		)
 
 	var count := 0

@@ -72,20 +72,21 @@ func _physics_process(delta: float) -> void:
 	__handle_zoom_in_out()
 
 
-func __on_collect_area_body_entered(body: Node3D) -> void:
-	if body is WeaponDrop:
-		if __inventory.is_full():
-			return
-		var weapon_item := body as WeaponDrop
-		__inventory.add(weapon_item.collect())
-	elif body is AmmoDrop:
-		var ammo := body as AmmoDrop
-		__inventory.add_ammo(ammo.collect(), ammo.type, ammo.weight)
-	elif body is CoinDrop:
-		var coin := body as CoinDrop
-		__inventory.add_coins(coin.collect())
-	else:
-		print("not a weapon item")
+func __on_collect_area_body_entered(_body: Node3D) -> void:
+	# if body is WeaponDrop:
+	# 	if __inventory.is_full():
+	# 		return
+	# 	var weapon_item := body as WeaponDrop
+	# 	__inventory.add(weapon_item.collect())
+	# elif body is AmmoDrop:
+	# 	var ammo := body as AmmoDrop
+	# 	__inventory.add_ammo(ammo.collect(), ammo.type, ammo.weight)
+	# elif body is CoinDrop:
+	# 	var coin := body as CoinDrop
+	# 	__inventory.add_coins(coin.collect())
+	# else:
+	# 	print("not a weapon item")
+	pass
 
 
 func _take_damage(amount: float) -> void:
@@ -163,7 +164,7 @@ func __handle_passive_health_regen(delta: float) -> void:
 			heal(heal_perc * get_max_health())
 			__passive_health_regen_timer = maxf(max_cooldown - (1.0 * count), min_cooldown)
 			__passive_health_regen_count += 1
-			
+
 			#__passive_health_regen_timer = __passive_health_regen_cooldown - ()
 	pass
 

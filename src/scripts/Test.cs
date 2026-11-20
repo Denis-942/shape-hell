@@ -3,44 +3,42 @@ using System;
 using Utils;
 using System.Diagnostics.Contracts;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Game
 {
     [GlobalClass]
     public partial class Test : Node
     {
+        [Export]
+        public PackedScene coinScene;
+
+        [Export]
+        public PackedScene ammoScene;
+
         public override void _Ready()
         {
-            // var sv = new ScalableValue<int, int>(3, 2, (a, b) =>
-            // {
-            //     return a * b;
-            // });
+            //             CoinDrop coin = coinScene.Instantiate<CoinDrop>();
+            //
+            //             Debug.Assert(coin != null);
+            //
+            //             coin.Drop.Data = 123;
+            //
+            //             GD.Print(coin.Drop.Data);
+            //
+            //             GD.Print(coin.Drop.Collect());
+            //             if (coin == null)
+            //             {
+            //                 GD.Print("nulllll");
+            //             }
 
-            // var sv = ScalableValue.Create(3, 2, (a, b) => a * b);
-            // sv.Base = 4;
-            // sv.Scalar = 3;
-            // GD.Print(sv.Base);
-            // GD.Print(sv.Scaled);
-            // Level l = new(100);
-            // GD.Print(l);
+            Drop<(int, AmmoType, AmmoWeight)> drop = new((10, AmmoType.Bullet, AmmoWeight.Light));
 
-            Dictionary<int, float> entries = new() {
-                {1, 0.4f},
-                {2, 0.3f},
-                {3, 0.2f},
-                {4, 0.1f}
-            };
-            Dice<int> dice = new(new() {
-                {1, 0.4f},
-                {2, 0.3f},
-                {3, 0.2f},
-                // {4, 0.1f}
-            });
-            GD.Print(dice.Roll());
-            GD.Print(dice.Roll());
-            GD.Print(dice.Roll());
-            GD.Print(dice.Roll());
-            GD.Print(dice.Roll());
+            AmmoDrop ammo = ammoScene.Instantiate<AmmoDrop>();
+
+            ammo.Drop = drop;
+
+            GD.Print(ammo.Collect());
         }
     }
 }

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dv0xm4irl8x2g"]
+
+[ext_resource type="Script" uid="uid://c01ih5jipqw4a" path="res://src/scripts/other/drops/CoinDrop.cs" id="1_kd1wn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dojuy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5mcrr"]
+
+[node name="CoinDrop" type="RigidBody3D" unique_id=1424294664 node_paths=PackedStringArray("_mesh")]
+script = ExtResource("1_kd1wn")
+_mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://c01ih5jipqw4a"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=812016315]
+shape = SubResource("BoxShape3D_dojuy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=595959200]
+mesh = SubResource("BoxMesh_5mcrr")

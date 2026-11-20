@@ -229,6 +229,8 @@ func _process(delta: float) -> void:
 
 
 func start() -> void:
+	Utils.print_project_code_info()
+
 	_score = 0
 	_enemy_kill_count = 0
 	_kill_all_enemies()
