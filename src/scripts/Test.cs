@@ -38,7 +38,7 @@ namespace Game
 
             ammo.Drop = drop;
 
-            GD.Print(ammo.Collect());
+
         }
     }
 }
