@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Utils;
 
-namespace Game;
+namespace Game.Types;
 
 [Tool, GlobalClass]
 public sealed partial class GunData : Resource
