@@ -1,23 +1,9 @@
 using Godot;
 
-namespace Game;
-
-#region Temp
-public enum AmmoType
-{
-    Bullet,
-    Shell,
-}
-public enum AmmoWeight
-{
-    Light,
-    Medium,
-    Heavy,
-}
-#endregion
+namespace Game.Types;
 
 [GlobalClass]
-public partial class AmmoDrop : DropObject<(int, AmmoType, AmmoWeight)>
+public partial class AmmoDrop : DropObject<(int, Enums.AmmoType, Enums.AmmoWeight)>
 {
 
 }

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Game;
+namespace Game.Types;
 
 [GlobalClass]
 public partial class CoinDrop : DropObject<int>

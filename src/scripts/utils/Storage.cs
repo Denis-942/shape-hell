@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Utils;
 
-namespace Game;
+namespace Game.Types;
 
 #nullable enable
 public class Storage<T>(int capacity) : ICollection<T?> where T : class
@@ -33,7 +33,7 @@ public class Storage<T>(int capacity) : ICollection<T?> where T : class
     {
         if (IsFull())
         {
-            GD.PushWarning(Constants.ErrorMessages.STORAGE_FULL(this));
+            GD.PushWarning(Game.Constants.ErrorMessages.STORAGE_FULL(this));
             return;
         }
         if (item == null)
@@ -55,7 +55,7 @@ public class Storage<T>(int capacity) : ICollection<T?> where T : class
         }
         if (IsSlotInUse(index))
         {
-            GD.PushWarning(Constants.ErrorMessages.SLOT_IN_USE(index, this));
+            GD.PushWarning(Game.Constants.ErrorMessages.SLOT_IN_USE(index, this));
             return;
         }
         if (item == null)

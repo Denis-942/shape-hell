@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace Utils;
+namespace Utils.Types;
 
 public class Drop<T>(T initialData)
 {

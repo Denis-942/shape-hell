@@ -1,6 +1,6 @@
 using System;
 
-namespace Utils;
+namespace Utils.Types;
 
 public class Level(int initialValue)
 {

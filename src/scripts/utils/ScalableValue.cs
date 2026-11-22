@@ -1,6 +1,6 @@
 using System;
 
-namespace Utils;
+namespace Utils.Types;
 
 public class ScalableValue<TBase, TScalar>
 {
@@ -23,7 +23,7 @@ public class ScalableValue<TBase, TScalar>
     }
 
 }
-public class ScalableValue
+public static class ScalableValue
 {
     public static ScalableValue<TBase, TScalar> Create<TBase, TScalar>(
         TBase baseValue,

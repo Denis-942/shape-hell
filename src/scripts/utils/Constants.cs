@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Types;
 
 namespace Utils.Constants
 {

@@ -1,7 +1,8 @@
-using Godot;
 using System;
 using System.Diagnostics;
-using Utils;
+using Game.Types;
+using Godot;
+using Utils.Types;
 
 namespace Game;
 
